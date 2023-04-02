@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Géstor de Matriculas.</title>
+    <link rel="shortcut icon" href="http://unidadpaulovi.com/chamilo/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="../assets/js/app/helpers/isLogged.js"></script>
+    <script src="../assets/js/app/main.js"></script>
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md bg-colegio2 d-flex ">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 text-white h1">Sistema Géstor de Matriculas</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+                <div class="d-flex mx-2 Menu">
+                    <div class="nombre mx-2 pt-2 fw-bold text-white"></div>
+                    <button type="button" onclick="logout()" class="btn btn-danger" value="">Salir</button>
+                    <div class="mainM"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar Vertical -->
+    <div class="row row-cols-2 columnas ">
+        <div class="col-sm-2 col-4 bg-light border-end menuV ">
+            <nav class="navbar  navbar-expand-sm d-flex flex-column vh-100 ">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarVertical" aria-controls="navbarVertical" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarVertical">
+
+                        <ul class="nav navbar-nav flex-column ">
+                            <li class="nav-item">
+                                <a class="nav-link text-colegio active" aria-current="page" href="./home.html">Listado
+                                    de Estudiantes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-colegio " href="./ListadoUsuario.html">Listado de Usuarios</a>
+                            </li>
+                     
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="col-sm-10 col-8 bg-colegio datos">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mt-3">
+                            <div class="card-header bg-colegio2 text-white">
+                                <h3>Listado de Estudiantes</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 dta">
+                                        <div class="table-responsive">
+                                            <table
+                                                class="table my-custom-scrollbar table-wrapper-scroll-y table-hover table-bordered text-center text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Cédula</th>
+                                                        <th>Nombre</th>
+                                                        <th>Apellido</th>
+                                                        <th>Fecha de Nacimiento</th>
+                                                        <th>Edad</th>
+                                                        <th>Género</th>
+                                                        <th>Grado</th>
+                                                        <th>Correo</th>
+                                                        <th>Telefono</th>
+                                                        <th>Dirección</th>
+                                                        <th colspan="3">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tableBody" class="align-middle">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-colegio2 text-white">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a class="btn btn-success" href="./gestion/estudiante.html">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../assets/js/app/estudiantes.js">
+    </script>
+    <script>
+        var isMobile = /Mobile/.test(navigator.userAgent);
+        if (isMobile) {
+            document.querySelector('.columnas').classList.remove('row-cols-2');
+            document.querySelector('.datos').classList.add('vh-100');
+            document.querySelector('.datos').classList.remove('col-sm-10');
+            document.querySelector('.Menu').classList.add('flex-column');
+            document.querySelector('.datos').classList.remove('col-8');
+            document.querySelector('.mainM').innerHTML = `<ul class="nav navbar-nav flex-column ">
+                            <li class="nav-item">
+                                <a class="nav-link text-colegio active" aria-current="page" href="./home.html">Listado de Estudiantes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-colegio " href="./ListadoUsuario.html">Listado de Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-colegio" href="./matricula.html">Matriculas</a>
+                            </li>
+                            
+                            
+                        </ul>`;
+            document.querySelector('.menuV').remove();
+        }
+    </script>
+</body>
+
+</html>
